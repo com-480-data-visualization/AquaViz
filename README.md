@@ -44,6 +44,7 @@ Please, fill the following sections about your project.
 
 Several existing analyses have explored global water consumption data through Machine Learning and Exploratory Data Analysis.
 One example is [Global Water Consumption Forecasting](https://www.kaggle.com/code/sarazahran1/global-water-consumption-forecasting), which focuses on predicting future water consumption trends using historical data and a Convolutional Neural Network model. This approach is useful for estimating future demand but mainly emphasizes forecasting accuracy rather than exploratory understanding of global patterns.
+
 Another one is [Global Water Consumption Analysis](https://www.kaggle.com/code/ahmedashraf299/global-water-consumption-analysis), which performs exploratory data analysis using multiple visualizations. They include correlation heatmaps, time trends by country, choropleth map of global water consumption over time, etc. These visualizations provide useful insights into the dataset but remain mostly a collection of loosely connected plots.
 
 Our project aims to extend these related works by providing an interactive and integrated visual exploration experience. Rather than presenting a set of independent plots, we design connected visualizations that link maps, temporal trends, and cross-country comparisons. This allows users to actively interact with the visualizations and explore water consumption patterns according to their interests.

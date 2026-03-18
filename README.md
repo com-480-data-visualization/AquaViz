@@ -41,6 +41,22 @@ We also evaluated the quality of the dataset before starting the visualizations.
 
 > Pre-processing of the data set you chose
 > - Show some basic statistics and get insights about the data
+>
+Our initial check showed that the dataset *cleaned_global_water_consumption.csv* is well-structured, with 500 observations across 10 variables. There are no missing values or duplicates, and the data types are already correctly formatted. As a result, only minimal preprocessing was required, mainly grouping the data by country and year for visualization.
+
+## Basic statistics and insights
+
+To better understand global water usage, we created initial visualizations to highlight key patterns.
+
+![Average sectoral water distribution](Plot/Average_global_water_usage_by_sector.png)
+
+As shown in Figure 1, water consumption is largely dominated by agriculture, which accounts for about 50.18% on average. Industry represents 27.79%, while households account for 24.83%. In some cases, this imbalance is even more pronounced for example, in Argentina, agricultural usage reached 66.52% in 2020.
+
+![Water scarcity level distribution](Plot/distribution_of_water_scarcity_levels.png)
+
+Figure 2 illustrates the distribution of water scarcity levels across all countries and years. Most observations fall under a *Moderate* level (72%), followed by *Low* (24.4%) and *High* (3.6%). The average groundwater depletion rate is 2.57%, although some regions experience more critical conditions. For instance, Mexico reached a peak depletion rate of 4.32% in 2012.
+
+Overall, these results highlight the imbalance between high agricultural demand and environmental sustainability.
 
 ### Related work
 

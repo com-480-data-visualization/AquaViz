@@ -23,6 +23,14 @@ Please, fill the following sections about your project.
 >
 > Hint: some good pointers for finding quality publicly available datasets ([Google dataset search](https://datasetsearch.research.google.com/), [Kaggle](https://www.kaggle.com/datasets), [OpenSwissData](https://opendata.swiss/en/), [SNAP](https://snap.stanford.edu/data/) and [FiveThirtyEight](https://data.fivethirtyeight.com/)).
 
+For our project, we chose the dataset *cleaned_global_water_consumption.csv*, which focuses on global water usage and environmental indicators. It covers 20 countries over a period of 25 years, from 2000 to 2024.
+
+The dataset includes 10 variables, such as total water consumption, per capita usage, and the distribution of water across agriculture, industry, and households. It also contains environmental indicators like rainfall impact, groundwater depletion, and water scarcity levels (Low, Moderate, High). These variables help us analyze trends over time, compare countries, and better understand how water usage relates to environmental stress.
+
+We also evaluated the quality of the dataset before starting the visualizations. The data is clean and well-structured, with no missing values and correctly formatted data types. As a result, only minimal preprocessing is needed, mainly grouping the data by country and filtering specific time periods.
+
+**Dataset source:** [Global Water Consumption Dataset 2000-2024 (Kaggle)](https://www.kaggle.com/datasets/atharvasoundankar/global-water-consumption-dataset-2000-2024?resource=download)
+
 ### Problematic
 
 > Frame the general topic of your visualization and the main axis that you want to develop.

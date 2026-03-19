@@ -36,6 +36,14 @@ We also evaluated the quality of the dataset before starting the visualizations.
 > Frame the general topic of your visualization and the main axis that you want to develop.
 > - What am I trying to show with my visualization?
 > - Think of an overview for the project, your motivation, and the target audience.
+>
+Water is an essential resource on which people depend in their daily lives, whether directly for consumption or indirectly for the production of goods such as food. However, due to the effects of climate change, water scarcity is becoming a growing concern in certain regions of the world, where rainfall levels are falling and glacial reserves are shrinking.
+
+This project aims to explore how water consumption patterns, sectoral distribution (agriculture, industry and households) and environmental factors influence water scarcity in different countries over time. Our motivation is to better understand the factors driving water scarcity, as water is one of the most essential resources for human life and economic activity.
+
+The visualisation is intended for a general audience interested in environmental issues, with the aim of raising awareness of the causes of water scarcity and highlighting global inequalities in water use.
+
+Therefore, our problematic is: **How does water consumption and its distribution across sectors contribute to water scarcity levels across countries over time?**
 
 ### Exploratory Data Analysis
 

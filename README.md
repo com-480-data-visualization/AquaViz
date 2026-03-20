@@ -2,7 +2,7 @@
 
 | Student's name | SCIPER |
 | -------------- | ------ |
-| | |
+|Istepanyan Anna | 327977|
 |Mohammad Massi|394309|
 |Oh Yoojin|423070|
 

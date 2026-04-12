@@ -1,0 +1,75 @@
+body {
+    font-family: Tahoma;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+header {
+    background-color: #00a3a0;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+#controls {
+    text-align: center;
+    padding: 1rem;
+    background-color: #e0e7e9;
+    border-bottom: 1px solid #ccc;
+}
+
+#controls input[type=range] {
+    width: 300px;
+    margin-left: 10px;
+}
+
+
+#dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#map-container {
+    flex: 2;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    min-height: 500px;
+}
+
+#side-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#side-panel h2 {
+    margin-top: 0;
+}
+
+.chart-box {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    min-height: 250px;
+}
+
+.chart-box h3 {
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 0;
+}

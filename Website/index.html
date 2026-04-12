@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua Viz - Global Water Consumption</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+</head>
+<body>
+
+    <header>
+        <h1>Aqua Viz</h1>
+    </header>
+
+    <section id="controls">
+        <label for="yearSlider">Select Year: <span id="yearLabel">2020</span></label>
+        <input type="range" id="yearSlider" min="2000" max="2024" step="1" value="2020">
+    </section>
+
+    <main id="dashboard">
+        <section id="map-container">
+            <h2>Water Scarcity Map</h2>
+            <div id="map-viz"></div>
+        </section>
+
+        <aside id="side-panel">
+            <h2>Country Details</h2>
+            <p id="selected-country">Click on a country to see details.</p>
+            
+            <div class="chart-box" id="doughnut-chart">
+                <h3>Sectoral Distribution</h3>
+                </div>
+
+            <div class="chart-box" id="bar-chart">
+                <h3>Per Capita Consumption</h3>
+                </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

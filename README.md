@@ -86,6 +86,7 @@ In addition to detailed visualizations of specific statistics (e.g., information
 ## Milestone 2 (17th April, 5pm)
 
 **10% of the final grade**
+You can find our team's Milestone 2 report [here](./Milestone/Milestone_2_AquaViz.pdf)
 
 
 ## Milestone 3 (29th May, 5pm)

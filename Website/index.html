@@ -1,43 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aqua Viz - Global Water Consumption</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaViz — Global Water Consumption</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Aqua Viz</h1>
-    </header>
+  
+  <header>
+    <div class="header-inner">
 
-    <section id="controls">
-        <label for="yearSlider">Select Year: <span id="yearLabel">2020</span></label>
-        <input type="range" id="yearSlider" min="2000" max="2024" step="1" value="2020">
+      <div class="header-brand">
+        <div class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1C12 1 2 12 2 18.5a10 10 0 0 0 20 0C22 12 12 1 12 1z"
+                  fill="white" fill-opacity="0.95"/>
+            <path d="M12 9C12 9 7 15 7 18.5a5 5 0 0 0 10 0C17 15 12 9 12 9z"
+                  fill="white" fill-opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Aqua<span>Viz</span></h1>
+          <p class="header-sub">Global Water Consumption &amp; Scarcity · 2000–2024</p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <label class="control-label mono" for="yearSlider">Scroll Year</label>
+        <div class="slider-wrapper">
+          <span class="year-bound mono">2000</span>
+          <div class="slider-track-wrap">
+            <input type="range" id="yearSlider" min="2000" max="2024" step="1" value="2020"
+                   aria-label="Select year between 2000 and 2024">
+          </div>
+          <span class="year-bound mono">2024</span>
+        </div>
+        <output class="year-display mono" id="yearLabel" for="yearSlider">2020</output>
+      </div>
+
+    </div>
+  </header>
+
+  
+  
+  <main id="dashboard">
+
+    <!-- ─── MAP PANEL ─── -->
+    <section id="map-container">
+      <div class="panel-head">
+        <div class="panel-head-left">
+          <span class="panel-tag mono">World </span>
+          <h2>Water Scarcity by Country</h2>
+        </div>
+        <div id="map-legend" class="legend-wrap" aria-label="Map colour legend"></div>
+      </div>
+
+
+      <div id="map-viz" role="img" aria-label="World map"></div>
+
+      <p class="panel-hint">↗ Click any country to explore its sectoral breakdown</p>
     </section>
 
-    <main id="dashboard">
-        <section id="map-container">
-            <h2>Water Scarcity Map</h2>
-            <div id="map-viz"></div>
-        </section>
+    <!-- ─── DETAILS PANEL ─── -->
+    <aside id="side-panel">
 
-        <aside id="side-panel">
-            <h2>Country Details</h2>
-            <p id="selected-country">Click on a country to see details.</p>
-            
-            <div class="chart-box" id="doughnut-chart">
-                <h3>Sectoral Distribution</h3>
-                </div>
+      <div class="side-head">
+        <div>
+          <span class="panel-tag mono">Country</span>
+          <h2 id="selected-country">Select a country</h2>
+        </div>
+        <button id="btn-clear" class="btn-clear" title="Clear selection" aria-label="Clear selection">
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
 
-            <div class="chart-box" id="bar-chart">
-                <h3>Per Capita Consumption</h3>
-                </div>
-        </aside>
-    </main>
+      <!-- KPI strip -->
+      <div class="kpi-strip">
+        <div class="kpi">
+          <span class="kpi-label mono">Total Consumption</span>
+          <strong class="kpi-value" id="kpi-total">—</strong>
+          <span class="kpi-unit mono">bn m³/yr</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label mono">Per Capita</span>
+          <strong class="kpi-value" id="kpi-pop">—</strong>
+          <span class="kpi-unit mono">L/day</span>
+        </div>
+        <div class="kpi kpi--accent">
+          <span class="kpi-label mono">Scarcity Level</span>
+          <strong class="kpi-value kpi-value--text" id="kpi-stress">—</strong>
+          <span class="kpi-unit mono">&nbsp;</span>
+        </div>
+      </div>
 
-    <script src="script.js"></script>
+      <!-- Doughnut chart box -->
+      <div class="chart-box">
+        <div class="chart-box-head">
+          <span class="chart-index mono">1</span>
+          <div>
+            <h3>Sectoral Distribution</h3>
+            <p class="chart-sub">Agricultural · Industrial · Household</p>
+          </div>
+        </div>
+
+        <div id="doughnut-chart" role="img" aria-label="Sectoral water use doughnut chart"></div>
+      </div>
+
+      <!-- Bar chart box -->
+      <div class="chart-box">
+        <div class="chart-box-head">
+          <span class="chart-index mono">2</span>
+          <div>
+            <h3>Per Capita Consumption</h3>
+            <p class="chart-sub">Litres per person · daily, by year</p>
+          </div>
+        </div>
+
+        <div id="bar-chart" role="img" aria-label="Per capita water consumption bar chart"></div>
+      </div>
+
+      <p class="source-note">Dataset source: Global Water Consumption Dataset 2000-2024 (Kaggle)</p>
+    </aside>
+
+  </main>
+
+
+
+
+  <script src="script.js"></script>
 </body>
 </html>

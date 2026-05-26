@@ -342,7 +342,7 @@ input[type="range"]::-moz-range-progress {
 
 .country--nodata { fill: #e8eeef; }
 
-/* Tooltip */
+/* 6. TOOLTIP */
 .tooltip {
   position: fixed;
   background: var(--surface);
@@ -528,9 +528,20 @@ input[type="range"]::-moz-range-progress {
 }
 
 /* Chart SVG containers */
-#doughnut-chart,
+#doughnut-chart {
+  min-height: 195px;
+  background: var(--surface-2);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
 #bar-chart {
-  min-height: 185px;
+  min-height: 175px;
   background: var(--surface-2);
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -662,4 +673,176 @@ input[type="range"]::-moz-range-progress {
   outline: 2px solid var(--brand);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/*  12. LEGEND & TOOLTIP EXTRAS  */
+.donut-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: .2rem 0 0;
+  font-size: .65rem;
+  font-family: var(--font-mono);
+  color: var(--ink-3);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-item i {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  display: inline-block;
+  opacity: .85;
+  flex-shrink: 0;
+}
+
+.tooltip-source {
+  display: block;
+  font-size: .58rem;
+  color: var(--ink-4);
+  font-style: italic;
+  margin-top: 3px;
+  letter-spacing: .01em;
+}
+
+/*  13. ANIMATION — PLAY BUTTON & FORECAST  */
+.btn-play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.6);
+  background: rgba(255,255,255,.15);
+  color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.btn-play:hover {
+  background: rgba(255,255,255,.28);
+  border-color: white;
+  transform: scale(1.08);
+}
+
+.btn-play svg { width: 12px; height: 12px; }
+
+.btn-play.playing {
+  background: rgba(255,255,255,.25);
+  border-color: white;
+}
+
+.year-predicted {
+  color: rgba(255,255,255,.5);
+  font-style: italic;
+}
+
+.bar.predicted {
+  fill: var(--brand);
+  opacity: .35;
+  stroke: var(--brand);
+  stroke-width: 1px;
+  stroke-dasharray: 3 2;
+}
+
+/*  14. COMPARE PANEL  */
+#compare-panel {
+  background: var(--surface);
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-mid) transparent;
+}
+
+.cmp-names {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  padding: .75rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmp-tag {
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .25rem .65rem;
+  border-radius: 20px;
+  letter-spacing: .03em;
+}
+
+.cmp-tag--a {
+  background: var(--brand-light);
+  color: var(--brand-dark);
+}
+
+.cmp-tag--b {
+  background: #fdeee5;
+  color: #b05a20;
+}
+
+.cmp-vs {
+  font-size: .65rem;
+  color: var(--ink-4);
+  letter-spacing: .08em;
+}
+
+.cmp-kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmp-kpi-col {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+}
+
+.cmp-kpi-col:last-child { border-right: none; }
+
+.cmp-donuts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmp-donut-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cmp-donut {
+  width: 100%;
+  min-height: 120px;
+}
+
+.cmp-legend {
+  display: flex;
+  gap: 1rem;
+  padding: .3rem 1.2rem .1rem;
+  font-size: .65rem;
+  font-family: var(--font-mono);
+  color: var(--ink-3);
+}
+
+.country.selected2 {
+  stroke: #e07b39 !important;
+  stroke-width: 2px !important;
+}
+
+#map-container .panel-hint::after {
+  content: ' · Shift+click to compare';
 }

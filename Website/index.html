@@ -15,11 +15,34 @@
 
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
-  
+  <!-- ─── LANDING SCREEN ─── -->
+  <div id="landing" role="dialog" aria-label="Welcome to AquaViz">
+    <div class="landing-bg"></div>
+
+    <div class="landing-content">
+      <button id="landing-enter" class="landing-drop" aria-label="Enter AquaViz">
+        <span class="ripple ripple-1" aria-hidden="true"></span>
+        <span class="ripple ripple-2" aria-hidden="true"></span>
+        <span class="ripple ripple-3" aria-hidden="true"></span>
+
+        <svg viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 1C12 1 2 12 2 18.5a10 10 0 0 0 20 0C22 12 12 1 12 1z"
+                fill="white" fill-opacity="0.98"/>
+          <path d="M12 9C12 9 7 15 7 18.5a5 5 0 0 0 10 0C17 15 12 9 12 9z"
+                fill="white" fill-opacity="0.45"/>
+        </svg>
+      </button>
+
+      <h1 class="landing-title">Aqua<span>Viz</span></h1>
+      <p class="landing-sub">Global Water Consumption &amp; Scarcity · 2000-2024</p>
+      <p class="landing-hint mono">click the drop to start</p>
+    </div>
+  </div>
+
   <header>
     <div class="header-inner">
 
@@ -34,7 +57,7 @@
         </div>
         <div class="brand-text">
           <h1>Aqua<span>Viz</span></h1>
-          <p class="header-sub">Global Water Consumption &amp; Scarcity · 2000–2030</p>
+          <p class="header-sub">Global Water Consumption &amp; Scarcity · 2000-2024</p>
         </div>
       </div>
 
@@ -43,10 +66,10 @@
         <div class="slider-wrapper">
           <span class="year-bound mono">2000</span>
           <div class="slider-track-wrap">
-            <input type="range" id="yearSlider" min="2000" max="2030" step="1" value="2020"
-                   aria-label="Select year between 2000 and 2030">
+            <input type="range" id="yearSlider" min="2000" max="2024" step="1" value="2020"
+                   aria-label="Select year between 2000 and 2024">
           </div>
-          <span class="year-bound mono">2030</span>
+          <span class="year-bound mono">2024</span>
         </div>
         <output class="year-display mono" id="yearLabel" for="yearSlider">2020</output>
         <button id="btn-play" class="btn-play" aria-label="Play animation" title="Play time-series">
@@ -63,8 +86,8 @@
     </div>
   </header>
 
-  
-  
+
+
   <main id="dashboard">
 
     <!-- ─── MAP PANEL ─── -->
@@ -80,8 +103,26 @@
 
       <div id="map-viz" role="img" aria-label="World map"></div>
 
-      <p class="panel-hint">↗ Click any country to explore its sectoral breakdown</p>
+      <div class="panel-hint">
+        <span class="hint-item">
+          <kbd class="kbd">Click</kbd>
+          <span>a country to explore it</span>
+        </span>
+        <span class="hint-sep">·</span>
+        <span class="hint-item">
+          <kbd class="kbd">Shift</kbd>
+          <span class="hint-plus">+</span>
+          <kbd class="kbd">Click</kbd>
+          <span>to compare two countries</span>
+        </span>
+      </div>
     </section>
+
+    <!-- ─── RESIZER ─── -->
+    <div id="resizer" class="resizer" role="separator" aria-orientation="vertical"
+         aria-label="Drag to resize side panel" title="Drag to resize">
+      <div class="resizer-grip" aria-hidden="true"></div>
+    </div>
 
     <!-- ─── SIDE PANEL (single country) ─── -->
     <aside id="side-panel">
@@ -141,35 +182,31 @@
           <span class="chart-index mono">2</span>
           <div>
             <h3>Per Capita Consumption</h3>
-            <p class="chart-sub">Litres per person · daily, by year</p>
+            <p class="chart-sub">Litres per person · daily · history + forecast</p>
           </div>
         </div>
 
         <div id="bar-chart" role="img" aria-label="Per capita water consumption bar chart"></div>
+        <div class="bar-legend">
+          <span class="legend-item"><i style="background:var(--brand);opacity:.65"></i>Historical</span>
+          <span class="legend-item"><i style="background:var(--brand);opacity:.25;border:1px dashed var(--brand)"></i>Forecast</span>
+          <span class="legend-item"><i style="background:#e07b39"></i>Drought event</span>
+        </div>
       </div>
 
-      <div class="source-note">
-        <p style="margin-bottom:.4rem">Dataset: Global Water Consumption 2000–2024 (Kaggle)</p>
-        <p style="margin-bottom:.2rem;color:var(--ink-3)">Historical events:</p>
-        <ul style="padding-left:1rem;line-height:1.6">
-          <li>Argentina 2023 — J.P. Morgan Private Bank Latin America, Sept. 2025</li>
-          <li>Brazil 2014 & 2024 — J.P. Morgan Private Bank Latin America, Sept. 2025 · WTW / CEMADEN, April 2025</li>
-          <li>Mexico 2011 & 2024 — NOAA Climate.gov, July 2024</li>
-          <li>Canada 2001 — Agriculture Canada / Historical record</li>
-          <li>USA 2012 — UNCCD Press Release, 2023</li>
-          <li>USA 2022 — Woodwell Climate Research / NASA, 2023</li>
-          <li>France, Germany, Italy, UK 2022 — World Economic Forum, Aug. 2022 · Al Jazeera, Aug. 2022 · Euronews, Aug. 2022</li>
-          <li>Germany 2018 — World Economic Forum, Aug. 2022</li>
-          <li>Spain 2023 — Wikipedia, 2023 European drought</li>
-          <li>South Africa 2018 — Wikipedia, Cape Town water crisis</li>
-          <li>Saudi Arabia 2012 — FAO / World Bank Historical record</li>
-          <li>Australia 2007 — World Economic Forum, 2019</li>
-          <li>China 2022 — NBC News, Dec. 2022</li>
-          <li>India 2019 — Wikipedia, 2019 Chennai water crisis</li>
-          <li>Indonesia 2007 — Urbanet / World Bank, 2024</li>
-          <li>Japan, South Korea, Turkey, Russia — Pacific Institute Water Conflict Chronology</li>
-        </ul>
+      <!-- Historical events box (populated per country) -->
+      <div class="chart-box" id="events-box">
+        <div class="chart-box-head">
+          <span class="chart-index mono chart-index--event">!</span>
+          <div>
+            <h3>Historical Drought Events</h3>
+            <p class="chart-sub" id="events-sub">Major water crises for this country</p>
+          </div>
+        </div>
+        <div id="events-list" class="events-list"></div>
       </div>
+
+      <p class="source-note">Dataset: Global Water Consumption 2000-2024 (Kaggle)</p>
     </aside>
     <!-- ─── COMPARE PANEL ─── -->
     <aside id="compare-panel">
@@ -179,47 +216,82 @@
           <span class="panel-tag mono">Comparison</span>
           <h2>Country vs Country</h2>
         </div>
-        <button id="btn-exit-compare" class="btn-clear" title="Exit comparison" aria-label="Exit comparison">
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </button>
+        <div class="cmp-head-actions">
+          <button id="btn-swap" class="btn-icon" title="Swap A ↔ B" aria-label="Swap countries">
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 5h8M9 3l2 2-2 2M11 9H3M5 7l-2 2 2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button id="btn-exit-compare" class="btn-clear" title="Exit comparison" aria-label="Exit comparison">
+            <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
-      <!-- Noms des pays -->
+      <!-- Country tags -->
       <div class="cmp-names">
         <span class="cmp-tag cmp-tag--a mono" id="cmp-name-a">—</span>
         <span class="cmp-vs mono">vs</span>
         <span class="cmp-tag cmp-tag--b mono" id="cmp-name-b">—</span>
       </div>
 
-      <!-- KPIs côte à côte -->
-      <div class="cmp-kpis">
-        <div class="cmp-kpi-col">
-          <div class="kpi"><span class="kpi-label mono">Total</span><strong class="kpi-value" id="cmp-total-a">—</strong><span class="kpi-unit mono">bn m³/yr</span></div>
-          <div class="kpi"><span class="kpi-label mono">Per Capita</span><strong class="kpi-value" id="cmp-pop-a">—</strong><span class="kpi-unit mono">L/day</span></div>
-          <div class="kpi kpi--accent"><span class="kpi-label mono">Scarcity</span><strong class="kpi-value kpi-value--text" id="cmp-stress-a">—</strong></div>
+      <!-- KPI rows with delta -->
+      <div class="cmp-kpi-rows">
+        <div class="cmp-row">
+          <span class="cmp-row-label mono">Total Consumption <small>(bn m³/yr)</small></span>
+          <div class="cmp-row-values">
+            <span class="cmp-val cmp-val--a" id="cmp-total-a">—</span>
+            <span class="cmp-delta" id="cmp-total-delta">—</span>
+            <span class="cmp-val cmp-val--b" id="cmp-total-b">—</span>
+          </div>
         </div>
-        <div class="cmp-kpi-col">
-          <div class="kpi"><span class="kpi-label mono">Total</span><strong class="kpi-value" id="cmp-total-b">—</strong><span class="kpi-unit mono">bn m³/yr</span></div>
-          <div class="kpi"><span class="kpi-label mono">Per Capita</span><strong class="kpi-value" id="cmp-pop-b">—</strong><span class="kpi-unit mono">L/day</span></div>
-          <div class="kpi kpi--accent"><span class="kpi-label mono">Scarcity</span><strong class="kpi-value kpi-value--text" id="cmp-stress-b">—</strong></div>
+        <div class="cmp-row">
+          <span class="cmp-row-label mono">Per Capita <small>(L/day)</small></span>
+          <div class="cmp-row-values">
+            <span class="cmp-val cmp-val--a" id="cmp-pop-a">—</span>
+            <span class="cmp-delta" id="cmp-pop-delta">—</span>
+            <span class="cmp-val cmp-val--b" id="cmp-pop-b">—</span>
+          </div>
+        </div>
+        <div class="cmp-row">
+          <span class="cmp-row-label mono">Scarcity Level</span>
+          <div class="cmp-row-values">
+            <span class="cmp-val cmp-val--a cmp-val--text" id="cmp-stress-a">—</span>
+            <span class="cmp-delta cmp-delta--neutral">·</span>
+            <span class="cmp-val cmp-val--b cmp-val--text" id="cmp-stress-b">—</span>
+          </div>
         </div>
       </div>
 
-      <!-- Donuts côte à côte -->
-      <div class="cmp-donuts">
-        <div class="cmp-donut-wrap">
-          <p class="chart-sub" style="text-align:center;margin-bottom:.3rem">Sectoral use</p>
-          <div id="cmp-donut-a" class="cmp-donut"></div>
+      <!-- Donuts side by side -->
+      <div class="chart-box">
+        <div class="chart-box-head">
+          <span class="chart-index mono">1</span>
+          <div>
+            <h3>Sectoral Distribution</h3>
+            <p class="chart-sub">Agri · Industry · Household</p>
+          </div>
         </div>
-        <div class="cmp-donut-wrap">
-          <p class="chart-sub" style="text-align:center;margin-bottom:.3rem">Sectoral use</p>
-          <div id="cmp-donut-b" class="cmp-donut"></div>
+        <div class="cmp-donuts">
+          <div class="cmp-donut-wrap">
+            <span class="cmp-mini-tag cmp-mini-tag--a mono" id="cmp-donut-label-a">—</span>
+            <div id="cmp-donut-a" class="cmp-donut"></div>
+          </div>
+          <div class="cmp-donut-wrap">
+            <span class="cmp-mini-tag cmp-mini-tag--b mono" id="cmp-donut-label-b">—</span>
+            <div id="cmp-donut-b" class="cmp-donut"></div>
+          </div>
+        </div>
+        <div class="donut-legend">
+          <span class="legend-item"><i style="background:#00a3a6"></i>Agricultural</span>
+          <span class="legend-item"><i style="background:#e07b39"></i>Industrial</span>
+          <span class="legend-item"><i style="background:#5b8fbd"></i>Household</span>
         </div>
       </div>
 
-      <!-- Bar chart comparatif -->
+      <!-- Bar chart comparative -->
       <div class="chart-box">
         <div class="chart-box-head">
           <span class="chart-index mono">2</span>
@@ -232,10 +304,10 @@
           <span class="legend-item"><i style="background:var(--brand)"></i><span id="cmp-leg-a">—</span></span>
           <span class="legend-item"><i style="background:#e07b39"></i><span id="cmp-leg-b">—</span></span>
         </div>
-        <div id="cmp-bars" style="min-height:160px;background:var(--surface-2);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;"></div>
+        <div id="cmp-bars" class="cmp-bars-wrap"></div>
       </div>
 
-      <p class="source-note" style="margin-top:auto">Shift+click another country to change comparison</p>
+      <p class="source-note">Shift+click another country on the map to swap the B side</p>
 
     </aside>
   </main>
@@ -243,6 +315,6 @@
 
 
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

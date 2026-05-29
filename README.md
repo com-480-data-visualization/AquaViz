@@ -45,7 +45,7 @@ AquaViz/
 │   ├── milestone1.md
 │   ├── milestone2.md
 |   ├── Milestone_2_AquaViz.pdf
-│   └── Process_book.pdf                 # Process book
+│   └── Process_book.pdf                        # Process book
 ├── Screencast/
 │   ├── Screencast.mp4
 ├── Plot/

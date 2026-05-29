@@ -158,6 +158,12 @@ Every view follows the same pattern: an `init` function builds an empty SVG skel
 
 ---
 
+## 💻 Website
+
+**Here is the link to the website:** [AquaViz](https://massirashidi.github.io/AquaViz/)
+
+---
+
 ## 📚 References & Inspirations
 
 - Kaggle — [Global Water Consumption Forecasting (CNN model)](https://www.kaggle.com/code/sarazahran1/global-water-consumption-forecasting)
